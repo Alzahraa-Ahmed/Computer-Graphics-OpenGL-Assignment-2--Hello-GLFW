@@ -3,15 +3,18 @@
 
 
 It's just so easy using terminal : run command to download library 
-sudo apt-get install --fix-missing  libglfw3-dev libglfw3
+
+                    sudo apt-get install --fix-missing  libglfw3-dev libglfw3
 
 GLFW Version 3 is now installed.
 
 - To compile a c++ file run command:
-          g++  sourceFile.cpp -o outputFileName -lglut -lGL -lGLU -lglfw
+
+                    g++  sourceFile.cpp -o outputFileName -lglut -lGL -lGLU -lglfw
          
 - To run the output file :
-          ./outputFileName 
+
+                              ./outputFileName 
           
   ----------------------------------------------------------------
   *As application* , I drawed a shape of different-color sides with rotation and camera effect.
