@@ -17,14 +17,15 @@ GLFW Version 3 is now installed.
                               ./outputFileName 
           
   ----------------------------------------------------------------
-  *As application* , I drawed a shape of different-color sides with rotation and camera effect.
-  Use key press as following :
-  R : to rotate the shape about y-axes
-  Right Arrow : move camera position in +ve X axes
-  Left Arrow : move camera position in -ve X axes
-  Up Arrow : move camera position in +ve Y axes
-  Down Arrow : move camera position in -ve Y axes
-  Space : returns camera  to original position.
+  **As application**  , I drawed a shape of different-color sides with rotation and camera effect.
+    Use key press as following:
+    
+      R : to rotate the shape about y-axes
+      Right Arrow : move camera position in +ve X axes
+      Left Arrow : move camera position in -ve X axes
+      Up Arrow : move camera position in +ve Y axes
+      Down Arrow : move camera position in -ve Y axes
+      Space : returns camera  to original position.
  
  
  
