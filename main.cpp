@@ -1,8 +1,6 @@
-#include <fstream>
 #include <GL/glut.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-
 
 using namespace std;
 
@@ -18,15 +16,9 @@ float angle= 0.0f;
 //Functions declaration
 static void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 void drawPyramid();
-void renderbitmap(float x, float y, void *font, char *string) ;
-void writeText(string text );
+
+
 int main(void) {
-    // initialize
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glEnable(GL_DEPTH_TEST); //surface transparency
-    glOrtho(-90.0, 100.0, -15.0, 100.0, 0.0, -15.0);
-
-
     //create GLFW window
     GLFWwindow *window;
 
@@ -54,8 +46,9 @@ int main(void) {
         glViewport(0, 0, width, height);
 
 
+        glEnable(GL_DEPTH_TEST); //surface transparency
+        glDepthFunc(GL_LESS);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glFrustum(-ratio, ratio, -ratio, ratio, 1.0f, 40.0f);
@@ -68,11 +61,9 @@ int main(void) {
         gluLookAt(camPosX, camPosY, camPosZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         glRotatef(angle, 0.0f, 1.0f, 0.0f);
         drawPyramid();
-        //text
-        //
 
         glfwSwapBuffers(window);
-        glfwPollEvents(); //important
+        glfwPollEvents();
     }
 
     glfwTerminate();
@@ -127,54 +118,30 @@ static void keyCallback(GLFWwindow *window, int key, int scancode, int action, i
                 glfwSetWindowShouldClose(window, GL_TRUE);
                 break;
 
-            case 265: //up
+            case GLFW_KEY_UP: //up
                 camPosY += 1;
                 break;
 
-            case 264: //down
+            case GLFW_KEY_DOWN: //down
                 camPosY -= 1;
                 break;
 
-            case 262: //right
+            case GLFW_KEY_RIGHT: //right
                 camPosX += 1;
                 break;
 
-            case 263: // left
+            case GLFW_KEY_LEFT: // left
                 camPosX -= 1;
                 break;
 
-            case 32: //space
+            case GLFW_KEY_SPACE: //space
                 camPosZ = camPosY= camPosX= 1.0f;
                 break;
 
-            case 82: //R
+            case GLFW_KEY_R: //R
                 angle+=20;
                 break;
 
         }
     }
-}
-void renderbitmap(float x, float y, void *font, char *string) {
-    char *c;
-    glRasterPos2f(x, y);
-    c = string;
-    float u = glutStrokeWidth(font, (int)*c); cout << u << endl;
-    glPushMatrix();
-    glTranslatef(x-50, y + 50,0);
-    glScalef(1.0f, -1.08f,  -14);
-    for (c = string; *c != '\0'; c++) {
-        //glScalef(0, 0, -3);
-        //glutBitmapCharacter(font, (int)*c);
-        glutStrokeCharacter(font, (int)*c);
-    }
-    glPopMatrix();
-}
-
-void writeText(string text) {
-    glColor3f(1.0f, 1.0f, 0.0f);
-    char buf[1000] = { 0 };
-    sprintf_s(buf, "kk");//buf[2]=\0;buf[3]=l;
-    renderbitmap(0, 50, GLUT_STROKE_ROMAN, buf);
-    sprintf_s(buf, "ll");//buf[2]=\0;buf[3]=l;
-
 }
